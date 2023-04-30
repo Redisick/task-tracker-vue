@@ -1,0 +1,242 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ff: 'Rubik', sans-serif;
+  --fw-reg: 300;
+  --fw-bold: 700;
+
+  --fs-h1: 1.3rem;
+  --fs-h3: 1.1rem;
+  --fs-body: 1rem;
+
+  --clr-lightest: rgb(252, 252, 252);
+  --clr-transparent: rgba(255, 255, 255, 0.8);
+  --clr-light: rgb(230, 230, 230);
+
+  --clr-accent: rgb(165, 223, 199);
+  --clr-accent-2: rgb(247, 136, 247);
+  --clr-dark: rgb(46, 66, 58);
+
+  --width: 90%;
+  --max-width: 1000px;
+
+  /* for pattern */
+  --s: 40px; /* control the size */
+  --c: var(--clr-light);
+  --c2: rgb(226, 226, 226);
+  
+  --_l: #0000 46%,var(--c) 47% 53%,#0000 54%;
+}
+
+@media (min-width: 700px){
+  :root {
+    --fs-h1: 1.5rem;
+    --fs-h3: 1.2rem;
+    --fs-body: 1.1rem;
+  }
+}
+
+/* General Styles, Typography */
+body {
+  font-family: var(--ff);
+  font-size: var(--fs-body);
+  color: var(--clr-dark);
+
+  position: relative;
+  min-height: 100vh;
+
+  background:
+    radial-gradient(100% 100% at 100% 100%,var(--_l)) var(--s) var(--s),
+    radial-gradient(100% 100% at 0    0   ,var(--_l)) var(--s) var(--s),
+    radial-gradient(100% 100%,#0000 22%,var(--c) 23% 29%, #0000 30% 34%,var(--c) 35% 41%,#0000 42%)
+    var(--c2);
+  background-size: calc(var(--s)*2) calc(var(--s)*2);
+}
+
+.blur {
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(1px);
+  border: 2px solid rgba(255,255,255,0.2);
+}
+
+h1,
+h3 {
+  font-weight: var(--fw-light);
+}
+/* only used for app title */
+h1 { 
+  font-size: var(--fs-h1);
+  width: min-content;
+  text-align: center;
+  letter-spacing: 1px;
+}
+h3 {
+  font-size: var(--fs-h3);
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Buttons */
+
+.btn {
+  border: none;
+  padding: 0.8rem 1.8rem;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  background-color: var(--clr-accent-2);
+  cursor:pointer;
+  border-radius: 5px;
+
+  transition: opacity 250ms ease;
+}
+.btn:hover {
+  opacity: 0.7;
+}
+.green {
+  background-color: var(--clr-accent); 
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 10%;
+  background-color: var(--clr-transparent);
+  gap: 0.5rem;
+
+  z-index: 9;
+  position: fixed;
+}
+
+/* Tasks */
+.form--container {
+  padding-top: 8.5em;
+}
+.tasks:first-of-type {
+  padding-top: 9em !important;
+}
+.tasks, .form {
+  max-width: var(--max-width);
+  width: var(--width);
+  margin: 0 auto;
+  padding: 0.5rem 0;
+}
+.task {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  border-radius: 5px;
+
+  position: relative;
+}
+.task__text {
+  width: 100%;
+  padding-right: 7rem;
+  overflow-wrap: break-word;
+}
+.task__icons {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  position: absolute;
+  right: 1rem;
+  width: 3rem;
+}
+.fas {
+  transition: color 250ms ease;
+  cursor: pointer;
+}
+.fas:hover {
+  color: var(--clr-lightest);
+}
+.done {
+  background-color: var(--clr-dark);
+}
+.task__check {
+  height: 15px;
+  width: 15px;
+
+  min-height: 15px;
+  min-width: 15px;
+  
+  border: 2px solid var(--clr-dark);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 1.5rem;
+}
+
+/* Form */
+.form--cover{
+  background-color: rgba(128, 128, 128, 0.466);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 8;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  background-color: var(--clr-lightest);
+  padding: 1rem;
+
+  position: fixed;
+  left: 50%;
+  top: 9em;
+  transform: translateX(-50%);
+  z-index: 10;
+  border-radius: 5px;
+}
+.form__control {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  width: 70%;
+  max-width: 500px;
+}
+.input--text {
+  background-color: var(--clr-light);
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 5px;
+  height: 2.5rem;
+  resize: none;
+}
+
+/* Filter */
+.filter {
+  position: absolute;
+  top: 6.4em;
+  right: 20%;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.2rem;
+  color: inherit;
+  background-color: var(--clr-transparent);
+  border-radius: 5px;
+  cursor: pointer;
+}
